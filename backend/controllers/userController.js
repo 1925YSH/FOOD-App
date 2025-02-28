@@ -1,6 +1,6 @@
 import userModel from "../models/userModel.js";
 import jwt from 'jsonwebtoken'
-import bcrypt from "bcrypt"
+import bcryptjs from "bcryptjs"
 import validator from 'validator'
 
 
@@ -17,7 +17,7 @@ try {
          return resp.json({success:false,message:"User does not exits"});
         }
         //if the user is available we match the password from stored pswd in db
-            const isMatch = await bcrypt.compare(password,user.password);
+            const isMatch = await bcryptjs.compare(password,user.password);
 
             //if pswd is not matched
             if (!isMatch) {
@@ -70,7 +70,7 @@ const registerUser =async(req,resp)=>{
 
         //hashing user password
 
-        const salt = await bcrypt.genSalt(10)
+        const salt = await bcryptjs.genSalt(10)
         const hashedPassword = await bcrypt.hash(password,salt);
 
         //creating acc of new user
