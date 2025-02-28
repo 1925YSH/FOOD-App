@@ -71,7 +71,7 @@ const registerUser =async(req,resp)=>{
         //hashing user password
 
         const salt = await bcryptjs.genSalt(10)
-        const hashedPassword = await bcrypt.hash(password,salt);
+        const hashedPassword = await bcryptjs.hash(password,salt);
 
         //creating acc of new user
         const newUser = new userModel({
@@ -88,7 +88,7 @@ const registerUser =async(req,resp)=>{
 
     } catch (error) {
         console.log(error);
-        resp.json({success:false,message:"error"})
+        resp.json({success:false,message:"Error"})
     }
 
 }
