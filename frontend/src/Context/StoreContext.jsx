@@ -6,7 +6,8 @@ export const StoreContext = createContext(null);
 const StoreContextProvider = (props) => {
   const [cartItems, setCartItems] = useState({});
 
-  const url ="https://food-app-backend-5mir.onrender.com";
+  const url =process.env.REACT_APP_BASE_URL;
+  //const url ="http://localhost:4000";
 
   const [token,setToken]=useState("");
 
