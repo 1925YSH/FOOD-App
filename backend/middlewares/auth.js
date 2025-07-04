@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 const authMiddleware = async (req,resp,next)=>{
     const {token }= req.headers;
     if (!token) {
-        return resp.json({success:false,message:"Npt Authorized Login again"})
+        return resp.json({success:false,message:"Not Authorized Login again"})
     }
 
     try {

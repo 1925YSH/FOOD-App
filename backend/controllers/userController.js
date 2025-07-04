@@ -4,46 +4,7 @@ import bcryptjs from "bcryptjs"
 import validator from 'validator'
 
 
-//Login User
-const loginUser = async(req,resp)=>{
 
-    const {email,password}=req.body;
-
-try {
-    //it checks the account is avilable with respect to the email then i will be stored in user variable
-        const user = await userModel.findOne({email})    
-
-        if (!user) {
-         return resp.json({success:false,message:"User does not exits"});
-        }
-        //if the user is available we match the password from stored pswd in db
-            const isMatch = await bcryptjs.compare(password,user.password);
-
-            //if pswd is not matched
-            if (!isMatch) {
-                return resp.json({success:false,message:"Invalid password"})
-            }
-
-            //if pswad is matched then generate an token
-
-            const token = createToken(user._id);
-
-            resp.json({success:true,token});
-
-} catch (error) {
-            console.log(error);
-                resp.json({success:false,message:"Error"})
-}
-
-}
-
-
-
-//create token
-
-const createToken = (id)=>{
-    return jwt.sign({id},process.env.JWT_SECRET)
-}
 
 //Register USer
 
@@ -91,6 +52,47 @@ const registerUser =async(req,resp)=>{
         resp.json({success:false,message:"Error"})
     }
 
+}
+
+//Login User
+const loginUser = async(req,resp)=>{
+
+    const {email,password}=req.body;
+
+try {
+    //it checks the account is avilable with respect to the email then it will be stored in user variable
+        const user = await userModel.findOne({email})    
+
+        if (!user) {
+         return resp.json({success:false,message:"User does not exits"});
+        }
+        //if the user is available we match the password from stored pswd in db
+            const isMatch = await bcryptjs.compare(password,user.password);
+
+            //if pswd is not matched
+            if (!isMatch) {
+                return resp.json({success:false,message:"Invalid password"})
+            }
+
+            //if pswad is matched then generate an token
+
+            const token = createToken(user._id);
+
+            resp.json({success:true,token});
+
+} catch (error) {
+            console.log(error);
+                resp.json({success:false,message:"Error"})
+}
+
+}
+
+
+
+//create token
+
+const createToken = (id)=>{
+    return jwt.sign({id},process.env.JWT_SECRET)
 }
 
 
