@@ -1,5 +1,7 @@
 import { Route, Routes } from 'react-router-dom'
 import './App.css'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Navbar from './components/Navbar/Navbar'
 import Home from './pages/Home/Home'
 import Cart from './pages/Cart/Cart'
@@ -26,9 +28,15 @@ function App() {
       <Route path='/placeOrder' element={<PlaceOrder/>} />
       <Route path='/verify' element={<Verify/>} />
       <Route path='/myorders' element={<MyOrders/>} />
+      
      </Routes>
+     
     </div>
     <Footer/>
+    
+    {/* ✅ Global ToastContainer at the end */}
+    <ToastContainer position="top-right" autoClose={3000} />
+    
   </>)
 }
 

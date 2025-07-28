@@ -2,7 +2,10 @@ import React, { useContext, useState } from 'react'
 import './LoginPopUp.css'
 import { assets } from '../../assets/assets'
 import { StoreContext } from '../../Context/StoreContext';
-import axios from 'axios'
+import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const LoginPopUp = ({setShowLogin}) => {
 
     const [currentState,setCurrentState]=useState("Login");
@@ -24,29 +27,36 @@ const LoginPopUp = ({setShowLogin}) => {
     }
 
     const onLogin = async(e)=>{
-       
-      e.preventDefault();
-      let newUrl = url;
-      if (currentState==="Login") {
-        newUrl +="/api/user/login"
-      }else{
-        newUrl +="/api/user/register"
+  e.preventDefault();
+  let newUrl = url;
+  if (currentState === "Login") {
+    newUrl += "/api/user/login"
+  } else {
+    newUrl += "/api/user/register"
+  }
 
-      }
+  try {
+    const response = await axios.post(newUrl, data);
 
-      const response = await axios.post(newUrl,data);
-      
-      if (response.data.success) {
-          setToken(response.data.token);
-          localStorage.setItem("token",response.data.token)
-        setShowLogin(false)
-        }else{
-          alert(response.data.message)
-          
-          
-        }
+    if (response.data.success) {
+      setToken(response.data.token);
+      localStorage.setItem("token", response.data.token);
 
+      // ✅ First show the toast
+      toast.success(response.data.message);
+
+      // ⏳ Then close popup after small delay (optional)
+      setTimeout(() => {
+        setShowLogin(false);
+      }, 1500); // allow toast to appear before closing
+    } else {
+      toast.error(response.data.message);
     }
+  } catch (err) {
+    console.error(err);
+    toast.error("Something went wrong");
+  }
+}
     
 
 
@@ -73,8 +83,10 @@ const LoginPopUp = ({setShowLogin}) => {
             : <p>Already have an account ? <span onClick={()=>setCurrentState("Login")} >Login here</span></p>
         }
            
-            
+             
       </form>
+      {/* Toast Container */}
+        <ToastContainer position="top-right" autoClose={3000} />
     </div>
   )
 }

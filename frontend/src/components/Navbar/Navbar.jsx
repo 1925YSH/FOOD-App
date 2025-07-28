@@ -3,6 +3,10 @@ import  './Navbar.css'
 import { assets } from '../../assets/assets'
 import {Link , useNavigate} from 'react-router-dom'
 import { StoreContext } from '../../Context/StoreContext'
+
+
+
+
 const Navbar = ({setShowLogin}) => {
 
     const [menu,setMenu] =useState("Menu")
@@ -15,7 +19,9 @@ const Navbar = ({setShowLogin}) => {
     const logout = ()=>{
       localStorage.removeItem("token");
       setToken("");
-      navigate("/")
+
+      toast.success("Logged out successfully")
+      navigate("/");
     }
     return (
     <div className='navbar'>
@@ -47,6 +53,7 @@ const Navbar = ({setShowLogin}) => {
           }
         
         </div>
+        
     </div>
   )
 }
