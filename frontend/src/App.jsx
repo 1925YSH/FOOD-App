@@ -11,6 +11,9 @@ import { useState } from 'react'
 import LoginPopUp from './components/LoginPopUp/LoginPopUp'
 import Verify from './pages/verify/Verify'
 import MyOrders from './pages/MyOrders/MyOrders'
+import AboutUs from './components/AboutUs/AboutUs';
+import Delivery from './components/Delivery/Delivery';
+import PrivacyPolicy from './components/Privacy & Policy/PrivacyPolicy';
 
 function App() {
     const [showLogin,setShowLogin] =useState(false)
@@ -28,6 +31,9 @@ function App() {
       <Route path='/placeOrder' element={<PlaceOrder/>} />
       <Route path='/verify' element={<Verify/>} />
       <Route path='/myorders' element={<MyOrders/>} />
+      <Route path='/about' element={<AboutUs/>}/>
+      <Route path="/delivery" element={<Delivery />} />
+      <Route path="/privacy-policy" element={<PrivacyPolicy />} />
       
      </Routes>
      

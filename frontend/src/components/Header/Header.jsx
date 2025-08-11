@@ -10,7 +10,7 @@ const Header = () => {
         Order now and indulge in a flavorful experience right at your doorstep!
         </p>
 
-        <button>View Menu</button>
+        <button onClick={() => window.scrollTo({ top:300, behavior: "smooth" })}>View Menu</button>
       </div>
     </div>
   );

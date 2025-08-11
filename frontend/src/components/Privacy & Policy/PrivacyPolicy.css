@@ -1,0 +1,32 @@
+.privacy-container {
+  max-width: 900px;
+  margin: auto;
+  padding: 40px 20px;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+
+.privacy-container h1 {
+  font-size: 36px;
+  color: tomato;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.privacy-container h2 {
+  margin-top: 25px;
+  color: #333;
+}
+
+.privacy-container p, 
+.privacy-container li {
+  color: #555;
+}
+
+.privacy-container ul {
+  margin-left: 20px;
+}
+
+.privacy-container strong {
+  color: tomato;
+}

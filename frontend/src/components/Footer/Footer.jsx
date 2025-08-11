@@ -1,6 +1,7 @@
 import React from "react";
 import "./Footer.css";
 import { assets } from "../../assets/assets";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -21,10 +22,17 @@ const Footer = () => {
         </div>
         <div className="footer-content-center">
             <h2>COMPANY</h2>
-            <li >Home</li>
-            <li>About Us</li>
-            <li>Delivery</li>
-            <li>Privacy & Policy</li>
+       <li><Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}> Home </Link></li>
+       
+            <li><Link to="/about" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+    About Us
+  </Link></li>
+            <li><Link to="/delivery" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+    Delivery
+  </Link></li>
+            <li><Link to="/privacy-policy" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+    Privacy & Policy
+  </Link></li>
         </div>
         <div className="footer-content-right">
         <h2>GET IN TOUCH</h2>
