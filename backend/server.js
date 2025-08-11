@@ -16,7 +16,13 @@ const port = process.env.PORT || 4000;
 
 //middleware
 app.use(express.json())  //data which we gets from frontend to backend are converted into json
-app.use(cors())  //allow backed to frontend
+
+//allows to communicate backend and frontend
+app.use(cors({
+  origin: ["https://food-app-blush-eight.vercel.app"], // Tumhara frontend ka deployed URL
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 
 //db Connection
 
